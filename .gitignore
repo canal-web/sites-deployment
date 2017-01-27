@@ -1,0 +1,4 @@
+/settings/*
+!/settings/default*
+/site-files/*
+/backups/*
