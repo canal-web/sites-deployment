@@ -20,11 +20,11 @@ NOFLAG_MSG="No valid option specified.\n
 Valid options are: \n
 - launch \n
 - update \n
+- backup-remote \n
 - db-to-remote \n
 - db-to-local \n
 - media-to-remote \n
-- media-to-local \n
-- backup-remote"
+- media-to-local \n"
 
 # Run checks and declare functions
 for f in scripts/*; do
@@ -52,6 +52,7 @@ case $1 in
         rsync-httpdocs
         rsync-gitignored
         db-to-remote
+        media-to-remote
     ;;
     update)
         rsync-httpdocs
@@ -70,10 +71,10 @@ case $1 in
         db-to-local
     ;;
     media-to-remote)
-        echo "rsync media"
+        media-to-remote
     ;;
     media-to-local)
-        echo "rsync media"
+        media-to-local
     ;;
     *)
         die ${NOFLAG_MSG}
