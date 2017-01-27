@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Check if local settings file is present
-if [[ ! -f "${DIR}/settings/local_params.sh" ]]; then
+if [[ ! -f "${DIR}settings/local_params.sh" ]]; then
     die "You must copy settings/default.local_params.sh to settings/local_params.sh and fill it with your distant server/database informations to continue"
 fi
-source "${DIR}/settings/local_params.sh"
+source "${DIR}settings/local_params.sh"
 
 # Check if remote settings file is present
-if [[ ! -f "${DIR}/settings/remote_params.sh" ]]; then
+if [[ ! -f "${DIR}settings/remote_params.sh" ]]; then
     die "You must copy settings/default.remote_params.sh to settings/remote_params.sh and fill it with your distant server/database informations to continue"
 fi
-source "${DIR}/settings/remote_params.sh"
+source "${DIR}settings/remote_params.sh"
 
 # Check if current user is the owner of current dir
 OWNER=`stat -c '%U' ${DIR}`

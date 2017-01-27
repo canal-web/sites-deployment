@@ -28,3 +28,23 @@ function magento-db-specifics {
 
     echo "Urls updated!"
 }
+
+# Create app/etc/local.xml
+function generate-local-xml {
+
+    LOCALXML_PATH=${DIR}gitignored-files/app/etc/local.xml
+    mkdir ${DIR}gitignored-files/app/etc -p
+
+    # Generate the final local.xml based on template file
+    cat "${DIR}templates/magento/default.app.local.xml" | sed \
+    -e "s,_REMOTE_SQL_HOST,${REMOTE_SQL_HOST}," \
+    -e "s,_REMOTE_SQL_USER,${REMOTE_SQL_USER}," \
+    -e "s,_REMOTE_SQL_PASSWORD,${REMOTE_SQL_PASSWORD}," \
+    -e "s,_REMOTE_SQL_DATABASE,${REMOTE_SQL_DATABASE}," \
+    -e "s,_REMOTE_ADMIN_PATH,${REMOTE_ADMIN_PATH}," \
+    -e "s,_REMOTE_URL_UNSECURE,${REMOTE_URL_UNSECURE}," \
+    -e "s,_REMOTE_URL_SECURE,${REMOTE_URL_SECURE}," \
+     > "${LOCALXML_PATH}"
+
+     echo -e "Please check the generated local.xml\nAlso, note that only base urls for the default scope are specified, so you will need to get your hands dirty to add store-specified urls, if needed."
+}

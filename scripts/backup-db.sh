@@ -2,7 +2,7 @@
 
 # Function to format current date (used in file naming)
 DATE=$(date '+%Y%m%d')
-BACKUP_FOLDER="${DIR}/backups/"
+BACKUP_FOLDER="${DIR}backups/"
 
 function backup-remote {
 

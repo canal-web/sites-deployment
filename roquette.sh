@@ -8,6 +8,7 @@ function die
 
 DIR=`dirname $0`
 DIR=`readlink -f $DIR`
+DIR=${DIR}/
 
 USED_CMS=false
 
@@ -21,6 +22,8 @@ Valid options are: \n
 - update \n
 - db-to-remote \n
 - db-to-local \n
+- media-to-remote \n
+- media-to-local \n
 - backup-remote"
 
 # Run checks and declare functions
@@ -42,10 +45,17 @@ MYSQL_REMOTE_COMMAND="mysql -h${REMOTE_SQL_HOST} -u${REMOTE_SQL_USER} -p${REMOTE
 # Manage flags
 case $1 in
     launch)
-        echo "launching"
+        generate-settings
+        generate-default-gitignored-files
+        additionnal-operations
+        assets-compilation
+        rsync-httpdocs
+        rsync-gitignored
+        db-to-remote
     ;;
     update)
-        echo "updating"
+        rsync-httpdocs
+        rsync-gitignored
     ;;
     backup-remote)
         echo "Roquette will now backup distant database..."
@@ -59,9 +69,11 @@ case $1 in
         echo "Roquette will now copy remote database to the local one."
         db-to-local
     ;;
-    media)
+    media-to-remote)
         echo "rsync media"
-        #penser aux deux sens (maj du preprod par rapport a la prod)
+    ;;
+    media-to-local)
+        echo "rsync media"
     ;;
     *)
         die ${NOFLAG_MSG}
