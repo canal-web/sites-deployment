@@ -55,6 +55,7 @@ case $1 in
         media-to-remote
     ;;
     update)
+        assets-compilation
         rsync-httpdocs
         rsync-gitignored
     ;;
