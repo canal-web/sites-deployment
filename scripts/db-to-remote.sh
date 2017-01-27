@@ -15,7 +15,7 @@ function db-to-remote {
     backup-local
 
     # DUMP DB PROD (just in case)
-    #backup-remote
+    backup-remote
 
     # COPY DB LOCAL TO REMOTE
     scp ${BACKUP_FOLDER}${DBDUMP_FILENAME} ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:
@@ -24,7 +24,7 @@ function db-to-remote {
     IMPORT_COMMAND="${MYSQL_REMOTE_COMMAND} < ${DBDUMP_FILENAME}"
     ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${IMPORT_COMMAND}
 
-    # MAGENTO SPECIFICS
+    # CMS SPECIFICS
     if [[ ${USED_CMS} == 'magento' ]]; then
         echo "Congratulations, what a beautiful Magento!"
         magento-db-specifics 'remote'
