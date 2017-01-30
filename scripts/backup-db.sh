@@ -4,6 +4,9 @@
 DATE=$(date '+%Y%m%d')
 BACKUP_FOLDER="${DIR}backups/"
 
+# Create backups directory if not already present
+mkdir ${BACKUP_FOLDER} -p
+
 function backup-remote {
 
     # Settings
