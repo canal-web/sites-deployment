@@ -6,14 +6,15 @@ RELEASE_NOTES.txt
 .sass-cache/
 *.scss
 *.map
+*.out
 index.php.sample
 .gitignore
 .git/
 /var/*
 /media/*
 m_test_search_speed.php
-local.xml.*
-local.xml
+/app/etc/local.xml.*
+/app/etc/local.xml
 robots.txt.*
 robots.txt
 .htaccess.*
