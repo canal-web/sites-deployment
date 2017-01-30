@@ -22,3 +22,9 @@ copy local medias to distant server
 
 ` ./roquette.sh media-to-local`
 copy remote medias to local server
+
+
+### TODO
+- wordpress database operations (change all URL occurences)
+- Magento: toggle "NOINDEX,NOFOLLOW" option when importing database to/from production?
+- Optimal/VP compatibility
