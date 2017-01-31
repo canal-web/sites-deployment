@@ -66,7 +66,6 @@ case $1 in
     db-to-remote)
         echo "Roquette will now copy local database to the remote one."
         db-to-remote
-        clear-cache
     ;;
     db-to-local)
         echo "Roquette will now copy remote database to the local one."
