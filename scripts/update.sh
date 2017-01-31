@@ -14,4 +14,11 @@ function rsync-gitignored {
     GITIGNORED_DIR=${DIR}/gitignored-files/
     # Bacon sonorites
     ${RSYNC} -a --no-o --no-g -z -e ssh --stats ${GITIGNORED_DIR} ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${REMOTE_ROOTDIR}
+
+    # CMS SPECIFICS
+    if [[ ${USED_CMS} == 'magento' ]]; then
+        clear-magento-cache
+    elif [[ ${USED_CMS} == 'drupal' ]]; then
+        clear-drupal-cache
+    fi
 }

@@ -50,7 +50,7 @@ function generate-local-xml {
 }
 
 # Function to clear cache on remote server
-function clear-cache {
+function clear-magento-cache {
     CLEAR_CACHE_COMMAND="rm -rf ${LOCAL_ROOTDIR}var/cache/*"
     ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${CLEAR_CACHE_COMMAND}
     echo 'Remote cache cleared'

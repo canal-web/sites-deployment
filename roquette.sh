@@ -53,13 +53,11 @@ case $1 in
         rsync-gitignored
         db-to-remote
         media-to-remote
-        clear-cache
     ;;
     update)
         assets-compilation
         rsync-httpdocs
         rsync-gitignored
-        clear-cache
     ;;
     backup-remote)
         echo "Roquette will now backup distant database..."
@@ -76,7 +74,6 @@ case $1 in
     ;;
     media-to-remote)
         media-to-remote
-        clear-cache
     ;;
     media-to-local)
         media-to-local

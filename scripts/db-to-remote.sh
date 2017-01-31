@@ -28,7 +28,9 @@ function db-to-remote {
     if [[ ${USED_CMS} == 'magento' ]]; then
         echo "Congratulations, what a beautiful Magento!"
         magento-db-specifics 'remote'
+        clear-magento-cache
     elif [[ ${USED_CMS} == 'drupal' ]]; then
+        clear-drupal-cache
         echo 'Drupal is cool. Nothing more to do.'
     elif [[ ${USED_CMS} == 'wordpress' ]]; then
         echo 'TODO'

@@ -22,6 +22,13 @@ function media-to-remote {
 
     ${RSYNC} -a --no-o --no-g -z -e ssh --stats ${LOCAL_ROOTDIR}${MEDIA_DIR}* ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${REMOTE_ROOTDIR}${MEDIA_DIR}
 
+    # CMS SPECIFICS
+    if [[ ${USED_CMS} == 'magento' ]]; then
+        clear-magento-cache
+    elif [[ ${USED_CMS} == 'drupal' ]]; then
+        clear-drupal-cache
+    fi
+
     echo 'Local media files sent to remote.'
 }
 
