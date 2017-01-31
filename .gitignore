@@ -3,3 +3,5 @@
 /site-files/*
 /backups/*
 /gitignored-files/*
+/templates/*
+!/templates/default*
