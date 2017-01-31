@@ -26,5 +26,6 @@ copy remote medias to local server
 
 ### TODO
 - wordpress database operations (change all URL occurences)
+- Cache clearing operations for other CMS than Magento
 - Magento: toggle "NOINDEX,NOFOLLOW" option when importing database to/from production?
 - Optimal/VP compatibility

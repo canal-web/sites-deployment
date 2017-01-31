@@ -53,4 +53,5 @@ function generate-local-xml {
 function clear-cache {
     CLEAR_CACHE_COMMAND="rm -rf ${LOCAL_ROOTDIR}var/cache/*"
     ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${CLEAR_CACHE_COMMAND}
+    echo 'Remote cache cleared'
 }

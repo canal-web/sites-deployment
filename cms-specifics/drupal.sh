@@ -16,3 +16,9 @@ function generate-settings-php {
 
      echo -e "Please check the generated settings.php"
 }
+
+
+# Function to clear cache on remote server
+function clear-cache {
+    #TODO
+}
