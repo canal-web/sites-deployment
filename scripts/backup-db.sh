@@ -14,23 +14,23 @@ function backup-remote {
 
     # Make a dump
     if [[ $1 == 'gz' ]]; then
-        DBDUMP_FILENAME="${SITENAME}_remote_${DATE}.gz"
-        DUMP_COMMAND="mysqldump -h${REMOTE_SQL_HOST} -u${REMOTE_SQL_USER} -p${REMOTE_SQL_PASSWORD} ${REMOTE_SQL_DATABASE} | gzip > ${DBDUMP_FILENAME}"
+        DBREMOTE_DUMP_FILENAME="${SITENAME}_remote_${DATE}.gz"
+        DUMP_COMMAND="mysqldump -h${REMOTE_SQL_HOST} -u${REMOTE_SQL_USER} -p${REMOTE_SQL_PASSWORD} ${REMOTE_SQL_DATABASE} | gzip > ${DBREMOTE_DUMP_FILENAME}"
     else
-        DBDUMP_FILENAME="${SITENAME}_remote_${DATE}.sql"
-        DUMP_COMMAND="mysqldump -h${REMOTE_SQL_HOST} -u${REMOTE_SQL_USER} -p${REMOTE_SQL_PASSWORD} ${REMOTE_SQL_DATABASE} > ${DBDUMP_FILENAME}"
+        DBREMOTE_DUMP_FILENAME="${SITENAME}_remote_${DATE}.sql"
+        DUMP_COMMAND="mysqldump -h${REMOTE_SQL_HOST} -u${REMOTE_SQL_USER} -p${REMOTE_SQL_PASSWORD} ${REMOTE_SQL_DATABASE} > ${DBREMOTE_DUMP_FILENAME}"
     fi
     ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${DUMP_COMMAND}
 
     # Copy it locally
-    scp ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${DBDUMP_FILENAME} ${BACKUP_FOLDER}
+    scp ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${DBREMOTE_DUMP_FILENAME} ${BACKUP_FOLDER}
 
     # Remove distant .sql file
-    RM_COMMAND="rm -f ${DBDUMP_FILENAME}"
+    RM_COMMAND="rm -f ${DBREMOTE_DUMP_FILENAME}"
     ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${RM_COMMAND}
 
     # Return hey it's okay
-    echo "New file in: "${BACKUP_FOLDER}${DBDUMP_FILENAME}
+    echo "New file in: "${BACKUP_FOLDER}${DBREMOTE_DUMP_FILENAME}
 }
 
 function backup-local {
@@ -39,9 +39,9 @@ function backup-local {
     SITENAME=${LOCAL_SQL_DATABASE}
 
     # Make a dump
-    DBDUMP_FILENAME="${SITENAME}_local_${DATE}.sql"
-    mysqldump -h${LOCAL_SQL_HOST} -u${LOCAL_SQL_USER} -p${LOCAL_SQL_PASSWORD} ${LOCAL_SQL_DATABASE} > ${BACKUP_FOLDER}${DBDUMP_FILENAME}
+    DBLOCAL_DUMP_FILENAME="${SITENAME}_local_${DATE}.sql"
+    mysqldump -h${LOCAL_SQL_HOST} -u${LOCAL_SQL_USER} -p${LOCAL_SQL_PASSWORD} ${LOCAL_SQL_DATABASE} > ${BACKUP_FOLDER}${DBLOCAL_DUMP_FILENAME}
 
     # Return hey it's okay
-    echo "New file in: "${BACKUP_FOLDER}${DBDUMP_FILENAME}
+    echo "New file in: "${BACKUP_FOLDER}${DBLOCAL_DUMP_FILENAME}
 }

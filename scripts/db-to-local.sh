@@ -6,7 +6,7 @@ function db-to-local {
     backup-remote
 
     # Import database locally
-    ${MYSQL_LOCAL_COMMAND} < ${BACKUP_FOLDER}${DBDUMP_FILENAME}
+    ${MYSQL_LOCAL_COMMAND} < ${BACKUP_FOLDER}${DBREMOTE_DUMP_FILENAME}
 
     if [[ ${USED_CMS} == 'magento' ]]; then
         echo "Congratulations, what a beautiful Magento!"
@@ -17,5 +17,5 @@ function db-to-local {
         echo 'TODO'
     fi
 
-    rm ${BACKUP_FOLDER}${DBDUMP_FILENAME}
+    rm ${BACKUP_FOLDER}${DBREMOTE_DUMP_FILENAME}
 }
