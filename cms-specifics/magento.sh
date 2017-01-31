@@ -48,3 +48,9 @@ function generate-local-xml {
 
      echo -e "Please check the generated local.xml\nAlso, note that only base urls for the default scope are specified, so you will need to get your hands dirty to add store-specified urls, if needed."
 }
+
+# Function to clear cache on remote server
+function clear-cache {
+    CLEAR_CACHE_COMMAND="rm -rf ${LOCAL_ROOTDIR}var/cache/*"
+    ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${CLEAR_CACHE_COMMAND}
+}
