@@ -20,5 +20,5 @@ function generate-settings-php {
 
 # Function to clear cache on remote server
 function clear-cache {
-    #TODO
+    echo 'TODO: clear Drupal cache'
 }

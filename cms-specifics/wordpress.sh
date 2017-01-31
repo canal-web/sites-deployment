@@ -47,5 +47,6 @@ function generate-wp-config-php {
 
 # Function to clear cache on remote server
 function clear-cache {
-    #Probably nothing todo (TODO:check)
+    #Probably nothing todo?
+    echo 'TODO: check if any cache needs to be cleared'
 }
