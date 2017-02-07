@@ -30,7 +30,8 @@ function wordpress-db-specifics {
 function generate-wp-config-php {
 
     WPCONFIG_PATH=${DIR}gitignored-files/wp-config.php
-
+    mkdir ${DIR}gitignored-files/
+    
     # Generate the final wp-config.php based on template file
     cat "${DIR}templates/wordpress/default.wp-config.php" | sed \
     -e "s,_REMOTE_SQL_HOST,${REMOTE_SQL_HOST}," \
