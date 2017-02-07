@@ -14,7 +14,7 @@ function db-to-local {
     elif [[ ${USED_CMS} == 'drupal' ]]; then
         echo 'Drupal is cool. Nothing more to do.'
     elif [[ ${USED_CMS} == 'wordpress' ]]; then
-        echo 'TODO'
+        wordpress-db-specifics 'local'
     fi
 
     rm ${BACKUP_FOLDER}${DBREMOTE_DUMP_FILENAME}

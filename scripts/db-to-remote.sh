@@ -33,6 +33,6 @@ function db-to-remote {
         clear-drupal-cache
         echo 'Drupal is cool. Nothing more to do.'
     elif [[ ${USED_CMS} == 'wordpress' ]]; then
-        echo 'TODO'
+        wordpress-db-specifics 'remote'
     fi
 }

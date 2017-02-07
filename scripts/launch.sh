@@ -11,13 +11,16 @@ function generate-settings {
         echo "Congratulations, what a beautiful Drupal!"
         generate-settings-php
     elif [[ ${USED_CMS} == 'wordpress' ]]; then
+        echo "Congratulations, what a beautiful Wordpress!"
         generate-wp-config-php
     fi
 }
 
 function generate-default-gitignored-files {
     # Generate .htaccess
-    cp ${LOCAL_ROOTDIR}.htaccess ${DIR}gitignored-files/
+    if [[ -f ${LOCAL_ROOTDIR}.htaccess ]]; then
+        cp ${LOCAL_ROOTDIR}.htaccess ${DIR}gitignored-files/
+    fi
 
     # Generate robots.txt (CMS-dependant)
     if [[ ${USED_CMS} == 'magento' ]]; then

@@ -1,31 +1,28 @@
 #!/bin/bash
 
 function wordpress-db-specifics {
-    #TODO
-    # if [[ $1 = 'local' ]]; then
-    #     MYSQL_COMMAND=${MYSQL_LOCAL_COMMAND}
-    #     NEW_URL=${LOCAL_URL}
-    # elif [[ $1 = 'remote' ]]; then
-    #     MYSQL_COMMAND="ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${MYSQL_REMOTE_COMMAND}"
-    #     NEW_URL=${REMOTE_URL}
-    # else
-    #     die "magento-db-specifics needs an argument (local or remote)"
-    # fi
-    # # After an import of a new database, we need to change URLs in database
-    # echo "select config_id from core_config_data where path like '%base_url%' and scope = 'default';" > tmp_get_config_id_for_baseurl.sql
-    # ${MYSQL_COMMAND} < tmp_get_config_id_for_baseurl.sql > tmp_config_ids
-    #
-    # while read p; do
-    #     if [[ $p != 'config_id' ]]; then
-    #         echo "update core_config_data set value = \"${NEW_URL}\" where config_id = ${p};" > tmp_change_urls_query.sql
-    #         ${MYSQL_COMMAND} < tmp_change_urls_query.sql
-    #     fi
-    # done <tmp_config_ids
-    #
-    # rm tmp_change_urls_query.sql
-    # rm tmp_get_config_id_for_baseurl.sql
-    # rm tmp_config_ids
-    #
+
+    if [[ $1 = 'local' ]]; then
+        MYSQL_COMMAND=${MYSQL_LOCAL_COMMAND}
+        NEW_URL=${LOCAL_URL}
+        OLD_URL=${REMOTE_URL}
+    elif [[ $1 = 'remote' ]]; then
+        MYSQL_COMMAND="ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${MYSQL_REMOTE_COMMAND}"
+        NEW_URL=${REMOTE_URL}
+        OLD_URL=${LOCAL_URL}
+    else
+        die "wordpress-db-specifics needs an argument (local or remote)"
+    fi
+
+    # After an import of a new database, we need to change the site urls in the database
+    echo "UPDATE wp_options SET option_value = REPLACE(option_value, '${OLD_URL}', '${NEW_URL}') WHERE option_name = 'home' OR option_name = 'siteurl';
+    UPDATE wp_posts SET post_content = REPLACE (post_content, '${OLD_URL}', '${NEW_URL}');
+    UPDATE wp_postmeta SET meta_value = REPLACE (meta_value, '${OLD_URL}','${NEW_URL}');
+    UPDATE wp_comments SET comment_content = REPLACE (comment_content, '${OLD_URL}', '${NEW_URL}');
+    UPDATE wp_comments SET comment_author_url = REPLACE (comment_author_url, '${OLD_URL}','${NEW_URL}');
+    UPDATE wp_posts SET guid = REPLACE (guid, '${OLD_URL}', '${NEW_URL}');" > tmp_urls_to_refresh.sql
+    ${MYSQL_COMMAND} < tmp_urls_to_refresh.sql
+
     echo "Urls updated!"
 }
 
