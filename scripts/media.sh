@@ -15,9 +15,9 @@ function media-to-remote {
     read -p "You are about to erase the media directory of a production website. Are you really really reallllly sure you wanna do that, bro? (y/n)" choice
     case "$choice" in
       y|Y ) echo "Ok, bro.";;
-      n|N ) die;;
+      n|N ) die "Aborted by user.";;
       bro ) fortune;;
-      * ) echo "invalid";;
+      * ) die "Abort: invalid answer.";;
     esac
 
     ${RSYNC} -a --no-o --no-g -z -e ssh --stats ${LOCAL_ROOTDIR}${MEDIA_DIR}* ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${REMOTE_ROOTDIR}${MEDIA_DIR}

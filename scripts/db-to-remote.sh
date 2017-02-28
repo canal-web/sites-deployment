@@ -6,9 +6,9 @@ function db-to-remote {
     read -p "You are about to erase a broduction database. Are you really really reallllly sure you wanna do that, bro? (y/n)" choice
     case "$choice" in
       y|Y ) echo "Ok, bro.";;
-      n|N ) die;;
+      n|N ) die "Aborted by user.";;
       bro ) fortune;;
-      * ) echo "invalid";;
+      * ) die "Abort: invalid answer.";;
     esac
 
     # DUMP DB LOCAL
