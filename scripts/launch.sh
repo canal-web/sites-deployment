@@ -2,7 +2,7 @@
 
 # Check if someone already launched the project
 function check-launched {
-    
+
     # has the flag already been generated ?
     if [[ -f ${DIR}gitignored-files/.launched ]]; then
     # if so, please confirm
@@ -14,6 +14,7 @@ function check-launched {
         esac
     # else, generate the flag and continue
     else
+        mkdir -p ${DIR}gitignored-files
         echo "true">${DIR}gitignored-files/.launched
     fi
 }
