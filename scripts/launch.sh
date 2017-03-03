@@ -1,5 +1,23 @@
 #!/bin/bash
 
+# Check if someone already launched the project
+function check-launched {
+    
+    # has the flag already been generated ?
+    if [[ -f ${DIR}gitignored-files/.launched ]]; then
+    # if so, please confirm
+        read -p "It seems the project has already been launched once. Do you want to run the launching steps again anyway? (y/n)" choice
+        case "$choice" in
+          y|Y ) echo "Ok, bro.";;
+          n|N ) die "Aborted by user.";;
+          * ) die "Abort: invalid answer.";;
+        esac
+    # else, generate the flag and continue
+    else
+        echo "true">${DIR}gitignored-files/.launched
+    fi
+}
+
 # Generate settings files
 function generate-settings {
 

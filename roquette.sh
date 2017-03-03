@@ -45,6 +45,7 @@ MYSQL_REMOTE_COMMAND="mysql -h${REMOTE_SQL_HOST} -u${REMOTE_SQL_USER} -p${REMOTE
 # Manage flags
 case $1 in
     launch)
+        check-launched
         generate-settings
         generate-default-gitignored-files
         additionnal-operations
