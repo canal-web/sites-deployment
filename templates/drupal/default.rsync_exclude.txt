@@ -18,3 +18,4 @@ sites/all/themes/*/config.json
 sites/default/files/*
 install.php
 *.sql
+node_modules

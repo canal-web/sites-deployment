@@ -19,3 +19,4 @@ wp-config*
 license.txt
 readme.html
 wp-content/uploads/*
+node_modules
