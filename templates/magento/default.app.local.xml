@@ -79,4 +79,11 @@
             </web>
         </admin>
     </stores>
+    <default>
+      <cw_settings>
+         <env>
+            <value>prod</value>
+         </env>
+      </cw_settings>
+   </default>
 </config>
