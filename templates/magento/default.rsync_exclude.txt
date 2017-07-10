@@ -27,3 +27,4 @@ composer.lock
 skin/frontend/*/*/config.json
 *.sql
 node_modules
+/vendor/n98/
