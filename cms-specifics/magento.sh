@@ -32,11 +32,18 @@ function magento-db-specifics {
 # Create app/etc/local.xml
 function generate-local-xml {
 
+    # Check if someone has already overwritten the default local.xml
+    if [[ -f ${DIR}templates/magento/app.local.xml ]]; then
+        TEMPLATE_FILE=${DIR}templates/magento/app.local.xml
+    else
+        TEMPLATE_FILE=${DIR}templates/magento/default.app.local.xml
+    fi
+
     LOCALXML_PATH=${DIR}gitignored-files/app/etc/local.xml
     mkdir ${DIR}gitignored-files/app/etc -p
 
     # Generate the final local.xml based on template file
-    cat "${DIR}templates/magento/default.app.local.xml" | sed \
+    cat "${TEMPLATE_FILE}" | sed \
     -e "s,_REMOTE_SQL_HOST,${REMOTE_SQL_HOST}," \
     -e "s,_REMOTE_SQL_USER,${REMOTE_SQL_USER}," \
     -e "s,_REMOTE_SQL_PASSWORD,${REMOTE_SQL_PASSWORD}," \
