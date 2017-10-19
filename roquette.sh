@@ -49,17 +49,17 @@ case $1 in
         generate-settings
         generate-default-gitignored-files
         assets-compilation
-	additionnal-operations
         rsync-httpdocs
         rsync-gitignored
         db-to-remote
         media-to-remote
+        additionnal-operations
     ;;
     update)
         assets-compilation
-        additionnal-operations
 	rsync-httpdocs
         rsync-gitignored
+        additionnal-operations
     ;;
     backup-remote)
         echo "Roquette will now backup distant database..."
