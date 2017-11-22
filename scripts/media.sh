@@ -21,6 +21,7 @@ function media-to-remote {
     esac
 
     ${RSYNC} -a --no-o --no-g -z -e ssh --stats ${LOCAL_ROOTDIR}${MEDIA_DIR}* ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${REMOTE_ROOTDIR}${MEDIA_DIR}
+    ${RSYNC} -a --no-o --no-g -z -e ssh --stats ${LOCAL_ROOTDIR}${MEDIA_DIR}.* ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${REMOTE_ROOTDIR}${MEDIA_DIR}
 
     # CMS SPECIFICS
     if [[ ${USED_CMS} == 'magento' ]]; then
@@ -34,6 +35,7 @@ function media-to-remote {
 
 function media-to-local {
     ${RSYNC} -a --no-o --no-g -z -e ssh --stats ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${REMOTE_ROOTDIR}${MEDIA_DIR}* ${LOCAL_ROOTDIR}${MEDIA_DIR}
+    ${RSYNC} -a --no-o --no-g -z -e ssh --stats ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST}:${REMOTE_ROOTDIR}${MEDIA_DIR}.* ${LOCAL_ROOTDIR}${MEDIA_DIR}
 
     echo 'Media files fetched from remote.'
 }
