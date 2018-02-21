@@ -7,7 +7,7 @@ function wordpress-db-specifics {
         NEW_URL=${LOCAL_URL}
         OLD_URL=${REMOTE_URL}
     elif [[ $1 = 'remote' ]]; then
-        MYSQL_COMMAND="ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${MYSQL_REMOTE_COMMAND}"
+        MYSQL_COMMAND="ssh -p ${SSH_PORT} ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${MYSQL_REMOTE_COMMAND}"
         NEW_URL=${REMOTE_URL}
         OLD_URL=${LOCAL_URL}
     else

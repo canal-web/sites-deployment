@@ -6,7 +6,7 @@ function magento-db-specifics {
         MYSQL_COMMAND=${MYSQL_LOCAL_COMMAND}
         NEW_URL=${LOCAL_URL}
     elif [[ $1 = 'remote' ]]; then
-        MYSQL_COMMAND="ssh ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${MYSQL_REMOTE_COMMAND}"
+        MYSQL_COMMAND="ssh -p ${SSH_PORT} ${REMOTE_SSH_USER}@${REMOTE_SSH_HOST} ${MYSQL_REMOTE_COMMAND}"
         NEW_URL=${REMOTE_URL}
     else
         die "magento-db-specifics needs an argument (local or remote)"
