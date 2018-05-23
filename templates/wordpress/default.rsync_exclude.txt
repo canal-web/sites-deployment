@@ -14,7 +14,7 @@ robots.txt
 composer.json
 composer.lock
 .htpasswd
-*.sql
+/*.sql
 wp-config*
 license.txt
 readme.html
