@@ -25,5 +25,5 @@ composer.json
 composer.lock
 .htpasswd
 skin/frontend/*/*/config.json
-*.sql
+/*.sql
 node_modules
