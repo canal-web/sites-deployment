@@ -17,5 +17,5 @@ composer.lock
 sites/all/themes/*/config.json
 sites/default/files/*
 install.php
-*.sql
+/*.sql
 node_modules
